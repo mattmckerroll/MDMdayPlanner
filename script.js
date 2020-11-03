@@ -3,6 +3,7 @@
 //var moment = moment();
 
 var currentDay = moment().format("dddd, MMMM DD");
+$("#currentDay").text(currentDay);
 
 $(document).ready(function(){
 
@@ -69,7 +70,7 @@ $(document).ready(function(){
         planText.attr("id", "hourindex-"+index);
         planText.attr("data-hour",index); //hours past 9am
         planText.attr("type","text");
-        planText.attr("class","hourlyPlanText");
+        planText.attr("class","hourlyPlanText textarea");
         planText.val(savedPlansArr[index]);  //this is what actually places the saved info 
         
         //making the input areas and divs
@@ -102,7 +103,7 @@ $(document).ready(function(){
     }
 
     function rowColor(row, hour){
-
+       
         if (hour < now24Hour) {
             
             row.addClass("past");
