@@ -4,9 +4,15 @@ var currentDay = moment.format("dddd, MMMM DD");
 
 $(document).ready(function(){
 
+    var now24Hour = moment().format("H");
+    var now12Hour = moment().format("h");
+
     //get stored stuff here with parse and json
 
-    //if stoarage empty do nothing
+    //if stoarage empty do nothing4
+    
+
+    savedPlansArr = new Array(9);
 
     let dayPlanDiv = $("#dayPlanArea");
     //clear existing stuff
@@ -15,16 +21,16 @@ $(document).ready(function(){
     for (let hour = 9; hour <= 17; hour++) {
         var index = hour - 9;   //index is essentially just number of hours past 9am 
 
-        var rows =  $('<div>');
+        var rows =  $("<div>");
         rows.addClass("row");
         rows.addClass("plannerRow");
         rows.attr("data-hour", hour);
 
-        var timeBlock =  $('<div>');
+        var timeBlock =  $("<div>");
         timeBlock.addClass("col-md-2");
 
         //the hour of the row will be shown here
-        var hourDisplay =  $('<span>');
+        var hourDisplay =  $("<span>");
         hourDisplay.attr("class", "time-block");
 
         let shownHour = 0;
@@ -48,75 +54,53 @@ $(document).ready(function(){
 
         var planText = $("<input>");
 
-        planText.attr('id', "hourindex-"+index);
+        planText.attr("id", "hourindex-"+index);
         planText.attr("data-hour",index); //hours past 9am
         planText.attr("type","text");
-        planText.attr('class','dailyPlan');
-
-
-
-        //input parts of planner goes here
+        planText.attr("class","hourlyPlanText");
+        planText.val(savedPlansArr[index]);  //this is what actually places the saved info 
         
-/*
-    // insert into col inset into timebox
-    $rowDiv.append($col2TimeDiv);
-    $col2TimeDiv.append($timeBoxSpn);
-    // STOP building Time box portion of row
+        //making the input areas and divs
+        var inputDiv = $("<div>");
+        inputDiv.addClass("col-md-9");
 
-    // START building input portion of row
-    // build row components
-    let $dailyPlanSpn = $('<input>');
+        rows.append(inputDiv);
+        inputDiv.append(planText);
 
-    $dailyPlanSpn.attr('id',`input-${index}`);
-    $dailyPlanSpn.attr('hour-index',index);
-    $dailyPlanSpn.attr('type','text');
-    $dailyPlanSpn.attr('class','dailyPlan');
+        let saveDiv = $("<div>");
+        saveDiv.addClass("col-md-1");
 
-    // access index from data array for hour 
-    $dailyPlanSpn.val( planTextArr[index] );
-    
-    // create col to control width
-    let $col9IptDiv = $('<div>');
-    $col9IptDiv.addClass('col-md-9');
+        //build the save button
+        var saveBtn = $("<button>");
+        saveBtn.attr("id",`saveid-${index}`);
+        saveBtn.attr("data-save",index);
+        saveBtn.attr("class","far fa-save saveBtn");
 
-    // add col width and row component to row
-    $rowDiv.append($col9IptDiv);
-    $col9IptDiv.append($dailyPlanSpn);
-    // STOP building Time box portion of row
+        //stick on the savebutton
+        rows.append(saveDiv);
+        saveDiv.append(saveBtn)
 
-    // START building save portion of row
-    let $col1SaveDiv = $('<div>');
-    $col1SaveDiv.addClass('col-md-1');
+        //call the function to apply a color to the row based on the time.
+        rowColor(rows, hour);
 
-    let $saveBtn = $('<i>');
-    $saveBtn.attr('id',`saveid-${index}`);
-    $saveBtn.attr('save-id',index);
-    $saveBtn.attr('class',"far fa-save saveIcon");
-    
-    // add col width and row component to row
-    $rowDiv.append($col1SaveDiv);
-    $col1SaveDiv.append($saveBtn);
-    // STOP building save portion of row
 
-    // set row color based on time
-    updateRowColor($rowDiv, hour);
-    
-    // add row to planner container
-    $plannerDiv.append($rowDiv);
 
-        
-
-    }
-*/
-dayPlanDiv.append(rows);
+        dayPlanDiv.append(rows);
 
     }
 });
 
-//$("#currentDay").html("<h1>"
+function rowColor(row, hour){
 
-for (var i = 9; i<18; i+=1){
+    if (hour < now24Hour) {
 
+        row.css("background-color", "grey");
+        
 
-    $(".container").append("<div>"+i+"</div>");
+        
+    }
+    //code here changes the colors of the row based on the time of day
+
 }
+
+
