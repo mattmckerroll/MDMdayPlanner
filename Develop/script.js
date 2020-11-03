@@ -74,7 +74,7 @@ $(document).ready(function(){
 
         //build the save button
         var saveBtn = $("<button>");
-        saveBtn.attr("id",`saveid-${index}`);
+        saveBtn.attr("id",`saveindex-${index}`);
         saveBtn.attr("data-save",index);
         saveBtn.attr("class","far fa-save saveBtn");
 
@@ -108,6 +108,13 @@ $(document).ready(function(){
         //code here changes the colors of the row based on the time of day
     
     }
+
+    $(document).on("click","button",function(event){
+        event.preventDefault();
+        var saveID = $(this).attr("data-save");
+        console.log(saveID);
+    })
+    
 });
 
 
