@@ -120,12 +120,13 @@ $(document).ready(function(){
     }
 
     $(document).on("click","button",function(event){
+        console.log("work yes?")
         event.preventDefault();
         var saveID = $(this).attr("data-save");
         console.log(saveID);
 
         var inputIndex = "#hourindex-"+saveID;
-        var value = $(inputIndex).value();
+        var value = $(inputIndex).val();
 
         savedPlansArr[saveID] = value;
 
