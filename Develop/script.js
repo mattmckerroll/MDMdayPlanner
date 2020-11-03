@@ -113,6 +113,14 @@ $(document).ready(function(){
         event.preventDefault();
         var saveID = $(this).attr("data-save");
         console.log(saveID);
+
+        var inputIndex = "#hourindex-"+saveID;
+        var value = $(inputIndex).value();
+
+        savedPlansArr[saveID] = value;
+
+        localStorage.setItem("plannerStorage", JSON.stringify(savedPlansArr));
+
     })
     
 });
