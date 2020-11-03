@@ -1,11 +1,13 @@
-var moment = moment();
+//import moment from moment;
 
-var currentDay = moment.format("dddd, MMMM DD");
+//var moment = moment();
+
+var currentDay = moment().format("dddd, MMMM DD");
 
 $(document).ready(function(){
 
     var now24Hour = moment().format("H");
-    var now12Hour = moment().format("h");
+    //var now12Hour = moment().format("h");
 
     //get stored stuff here with parse and json
 
@@ -88,19 +90,26 @@ $(document).ready(function(){
         dayPlanDiv.append(rows);
 
     }
+
+    function rowColor(row, hour){
+
+        if (hour < now24Hour) {
+            
+            row.addClass("past");
+    
+        } else if ( hour > now24Hour) {
+    
+            row.addClass("future")
+    
+          } else {
+    
+            row.addClass("present")
+          }
+        //code here changes the colors of the row based on the time of day
+    
+    }
 });
 
-function rowColor(row, hour){
 
-    if (hour < now24Hour) {
-
-        row.css("background-color", "grey");
-        
-
-        
-    }
-    //code here changes the colors of the row based on the time of day
-
-}
 
 
