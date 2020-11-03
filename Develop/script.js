@@ -11,11 +11,21 @@ $(document).ready(function(){
 
     //get stored stuff here with parse and json
 
-    //if stoarage empty do nothing4
+    var fromstorage = JSON.parse(localStorage.getItem("plannerStorage"));
+
+    //if stoarage empty do nothing, if not, toss that info into the saved plans array
+
+    if (fromstorage !== null) {
+        savedPlansArr = fromstorage;
+        
+    }else{
+        savedPlansArr = new Array(9);
+
+    }
+
     
 
-    savedPlansArr = new Array(9);
-
+    
     let dayPlanDiv = $("#dayPlanArea");
     //clear existing stuff
     dayPlanDiv.empty();
