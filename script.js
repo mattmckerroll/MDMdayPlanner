@@ -102,7 +102,7 @@ $(document).ready(function(){
 
     }
 
-    function rowColor(row, hour){
+    function rowColor(row, hour){ //this function will color the rows based on the time
        
         if (hour < now24Hour) {
             
@@ -116,10 +116,11 @@ $(document).ready(function(){
     
             row.addClass("present")
           }
-        //code here changes the colors of the row based on the time of day
+        
     
     }
 
+    //onclick event function that will save the info entered into the text fields
     $(document).on("click","button",function(event){
         console.log("work yes?")
         event.preventDefault();
